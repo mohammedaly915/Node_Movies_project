@@ -37,9 +37,9 @@ app.use((error, req, res, next) => {
   });
 
  
-app.listen(5000,"localhost",()=>{
-    console.log("http://localhost:5000/api/auth");
-    console.log("http://localhost:5000/api/users");
+app.listen(5000,"0.0.0.0",()=>{
+    console.log("http://0.0.0.0:5000/api/auth");
+    console.log("http://0.0.0.0:5000/api/users");
     console.log("http://localhost:5000/api/movies");
     console.log("http://localhost:5000/api/lists");
 })
