@@ -7,6 +7,8 @@ const verifyToken=require("../middlewares/verifyToken")
 router.route("/").get(verifyToken,listController.getLists)
                  .post(verifyToken,listController.addList) 
                  
-router.route("/:id").delete(listController.deleteList)
+router.route("/:id")
+                    .patch(listController.updateList)
+                    .delete(listController.deleteList)
 
 module.exports = router;

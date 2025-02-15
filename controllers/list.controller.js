@@ -35,11 +35,24 @@ const getLists=asyncWrapper(async(req,res)=>{
 
 
 const addList=asyncWrapper(async(req,res)=>{
-
   const newMovie=new List(req.body)
   await newMovie.save();
   res.status(201).json({ status: status.SUCCESS, data: { movie: newMovie } });
 })
+
+
+const updateList = asyncWrapper(async (req, res) => {
+  const { id } = req.params;
+  const updatedData = req.body;
+
+  const updatedMovie = await List.findByIdAndUpdate(id, updatedData);
+
+  if (!updatedMovie) {
+    return res.status(404).json({ status: status.FAILURE, msg: "Movie not found" });
+  }
+
+  res.status(200).json({ status: status.SUCCESS, data: { movie: updatedMovie } });
+});
 
 
 
@@ -53,5 +66,6 @@ const deleteList=asyncWrapper(async(req,res)=>{
 module.exports={
     getLists,
     addList,
+    updateList,
     deleteList
 }
